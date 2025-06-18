@@ -295,6 +295,60 @@
             background-color: var(--danger-dark-color);
             transform: scale(1.1);
         }
+
+        /* Media Queries for Responsiveness */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2em;
+            }
+
+            header p {
+                font-size: 1em;
+            }
+
+            h2 {
+                font-size: 1.8em;
+            }
+
+            main {
+                margin: 20px auto;
+                padding: 15px;
+            }
+
+            section {
+                padding: 15px;
+            }
+
+            .calculo-container {
+                grid-template-columns: 1fr; /* Stacks elements vertically on small screens */
+                padding: 15px;
+            }
+
+            .button-group {
+                flex-direction: column; /* Stack buttons vertically */
+                gap: 8px;
+            }
+
+            button {
+                width: 100%; /* Make buttons full width */
+            }
+
+            #listaTransacoes li {
+                flex-direction: column; /* Stack description/value and button */
+                align-items: flex-start;
+                padding: 10px;
+            }
+
+            #listaTransacoes li button {
+                margin-top: 8px;
+                align-self: flex-end; /* Align delete button to the right */
+            }
+
+            #saldoFluxoContainer {
+                text-align: center;
+                font-size: 1.1em;
+            }
+        }
     </style>
 </head>
 <body>
