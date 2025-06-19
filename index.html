@@ -3,21 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculadora Financeira e Matemática - Seu Nome</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <title>Calculadora Financeira e Matemática - Gustavo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Roboto+Mono&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #4CAF50; /* Green */
-            --primary-dark-color: #388E3C;
-            --secondary-color: #2196F3; /* Blue */
-            --secondary-dark-color: #1976D2;
-            --background-color: #e8f5e9; /* Light green background */
-            --card-background: #ffffff;
-            --text-color: #333;
-            --header-bg: #c8e6c9; /* Lighter green for header */
-            --border-color: #a5d6a7; /* Greenish border */
-            --danger-color: #f44336; /* Red for errors/delete */
-            --danger-dark-color: #d32f2f;
+            /* Cores do Tema Escuro */
+            --background-color: #1a1a1a; /* Preto suave de fundo */
+            --card-background: #282828; /* Fundo dos cartões/seções */
+            --text-color: #f0f0f0; /* Branco suave para texto principal */
+            --header-bg: #111111; /* Preto ainda mais escuro para o cabeçalho */
+
+            /* Roxo Neon Escuro */
+            --primary-color: #8a2be2; /* Roxo para botões, bordas principais */
+            --primary-dark-color: #6a0dad; /* Roxo mais escuro para hover/destaque */
+            --secondary-color: #b366ff; /* Roxo mais claro/neon para detalhes */
+            --secondary-dark-color: #9932cc; /* Roxo médio */
+
+            /* Outras Cores */
+            --border-color: #444; /* Borda sutil */
+            --danger-color: #e53935; /* Vermelho para erros/despesas */
+            --danger-dark-color: #c62828;
+            --success-color: #4caf50; /* Verde para receitas */
+            --info-text-color: #aaaaaa; /* Texto de informação mais claro */
         }
 
         body {
@@ -33,71 +40,77 @@
 
         header {
             background-color: var(--header-bg);
-            padding: 30px 20px;
+            padding: 40px 20px;
             text-align: center;
             border-bottom: 2px solid var(--primary-color);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.5); /* Sombra mais visível no escuro */
         }
 
         header h1 {
             margin-bottom: 10px;
-            font-size: 2.8em;
-            color: var(--primary-dark-color);
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+            font-size: 3.2em;
+            color: var(--secondary-color); /* Roxo neon para o título */
+            text-shadow: 0 0 10px rgba(138, 43, 226, 0.5); /* Efeito neon sutil */
+            letter-spacing: 1px;
+            font-weight: 700;
         }
 
         header p {
             font-size: 1.2em;
-            color: #555;
+            color: var(--info-text-color);
+            margin-top: 5px;
         }
 
         main {
-            padding: 20px;
-            max-width: 900px;
-            margin: 30px auto;
+            padding: 30px 20px;
+            max-width: 960px;
+            margin: 40px auto;
             background-color: var(--card-background);
             border: 1px solid var(--border-color);
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-radius: 12px;
+            box-shadow: 0 6px 25px rgba(0,0,0,0.4); /* Sombra proeminente */
         }
 
         section {
-            margin-bottom: 40px;
-            padding: 25px;
+            margin-bottom: 50px;
+            padding: 30px;
             border: 1px solid var(--border-color);
-            background-color: #f9fdf9;
-            border-radius: 8px;
-            box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+            background-color: #333333; /* Fundo ligeiramente mais claro para seções */
+            border-radius: 10px;
+            box-shadow: inset 0 1px 5px rgba(0,0,0,0.3);
         }
 
         h2 {
-            color: var(--primary-dark-color);
+            color: var(--secondary-color); /* Roxo neon para os títulos de seção */
             text-align: center;
-            margin-bottom: 25px;
-            font-size: 2.2em;
-            border-bottom: 2px solid var(--primary-color);
-            padding-bottom: 10px;
+            margin-bottom: 30px;
+            font-size: 2.6em;
+            padding-bottom: 15px;
             position: relative;
+            font-weight: 700;
+            text-shadow: 0 0 8px rgba(179, 102, 255, 0.4); /* Efeito neon sutil */
         }
         h2::after {
             content: '';
             position: absolute;
             left: 50%;
-            bottom: -2px;
+            bottom: 0;
             transform: translateX(-50%);
-            width: 50px;
-            height: 2px;
-            background-color: var(--secondary-color);
+            width: 80px;
+            height: 3px;
+            background-color: var(--primary-color); /* Linha roxa */
+            border-radius: 2px;
         }
 
         .calculo-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            padding: 20px;
-            background-color: var(--background-color);
-            border-radius: 8px;
-            margin-top: 20px;
+            gap: 25px;
+            padding: 25px;
+            background-color: var(--background-color); /* Usar o fundo principal */
+            border-radius: 10px;
+            margin-top: 25px;
+            border: 1px solid var(--border-color); /* Bordas para a área de calculo */
         }
 
         .input-group {
@@ -108,170 +121,214 @@
         label {
             margin-bottom: 8px;
             color: var(--text-color);
-            font-weight: bold;
+            font-weight: 500;
+            font-size: 0.95em;
         }
 
         input[type="number"],
         input[type="text"],
         select {
             padding: 12px;
-            border: 1px solid var(--border-color);
-            border-radius: 5px;
+            border: 1px solid var(--border-border-color); /* Borda mais escura para inputs */
+            border-radius: 6px;
             width: 100%;
             box-sizing: border-box;
             font-size: 1em;
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+            background-color: #3d3d3d; /* Fundo dos inputs */
+            color: var(--text-color);
         }
         input[type="number"]:focus,
         input[type="text"]:focus,
         select:focus {
-            border-color: var(--secondary-color);
-            box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.2);
+            border-color: var(--primary-color); /* Borda roxa ao focar */
+            box-shadow: 0 0 0 4px rgba(138, 43, 226, 0.3); /* Sombra roxa ao focar */
             outline: none;
+            background-color: #4a4a4a; /* Ligeiramente mais claro ao focar */
         }
 
         button {
             background-color: var(--primary-color);
             color: white;
             border: none;
-            padding: 12px 20px;
+            padding: 14px 25px;
             cursor: pointer;
             font-size: 1.1em;
+            font-weight: 500;
             width: auto;
             margin-top: 15px;
-            border-radius: 5px;
-            transition: background-color 0.3s ease, transform 0.2s ease;
+            border-radius: 6px;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            box-shadow: 0 2px 8px rgba(138, 43, 226, 0.3); /* Sombra roxa para botões */
         }
 
         button:hover {
             background-color: var(--primary-dark-color);
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            box-shadow: 0 4px 15px rgba(138, 43, 226, 0.4);
+        }
+
+        button:active {
+            transform: translateY(0);
+            box-shadow: 0 1px 5px rgba(138, 43, 226, 0.2);
         }
 
         button.clear-btn {
-            background-color: #6c757d; /* Grey for clear */
+            background-color: #555; /* Cinza mais neutro para limpar */
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
         }
         button.clear-btn:hover {
-            background-color: #5a6268;
+            background-color: #777;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
         }
 
         .button-group {
             display: flex;
-            gap: 10px;
+            gap: 15px;
             justify-content: center;
             grid-column: 1 / -1;
-            margin-top: 10px;
+            margin-top: 20px;
         }
 
         p.resultado {
-            margin-top: 20px;
-            font-size: 1.2em;
+            margin-top: 25px;
+            font-size: 1.3em;
             text-align: center;
             font-weight: bold;
-            padding: 10px;
-            background-color: #e0e0e0;
-            border-radius: 5px;
+            padding: 15px;
+            background-color: #3a3a3a; /* Fundo mais escuro para o resultado */
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
         }
 
         p.resultado span {
-            color: var(--primary-dark-color);
+            color: var(--secondary-color); /* Roxo neon para o valor do resultado */
+            font-weight: 700;
+            text-shadow: 0 0 5px rgba(179, 102, 255, 0.3);
         }
         p.resultado.error-message span {
             color: var(--danger-color);
+            text-shadow: none; /* Remover neon em erro */
         }
 
         hr {
             border: 0;
             height: 1px;
             background-image: linear-gradient(to right, rgba(0, 0, 0, 0), var(--border-color), rgba(0, 0, 0, 0));
-            margin: 40px 0;
+            margin: 50px 0;
         }
 
         footer {
             text-align: center;
-            padding: 20px;
-            background-color: var(--primary-dark-color);
-            color: white;
-            margin-top: 30px;
-            border-radius: 0 0 10px 10px;
-            font-size: 0.9em;
+            padding: 25px;
+            background-color: var(--header-bg); /* O mesmo do header */
+            color: var(--info-text-color);
+            margin-top: 40px;
+            border-radius: 0 0 12px 12px;
+            font-size: 0.95em;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.5);
+        }
+        footer a {
+            color: var(--secondary-color); /* Roxo neon para links no footer */
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+        footer a:hover {
+            color: var(--primary-color);
+            text-decoration: underline;
         }
 
         /* Estilos específicos para o Fluxo de Caixa */
         #fluxoDeCaixa h3 {
-            color: var(--secondary-dark-color);
-            margin-top: 20px;
+            color: var(--secondary-color); /* Roxo neon */
+            margin-top: 25px;
             text-align: center;
-            font-size: 1.5em;
+            font-size: 1.8em;
             grid-column: 1 / -1;
-            padding-bottom: 10px;
-            border-bottom: 1px dashed var(--secondary-color);
+            padding-bottom: 12px;
+            border-bottom: 1px dashed var(--primary-color); /* Linha roxa tracejada */
+            font-weight: 600;
         }
 
         #listaTransacoes {
             list-style: none;
             padding: 0;
-            margin-top: 15px;
+            margin-top: 20px;
             grid-column: 1 / -1;
-            max-height: 300px;
+            max-height: 350px;
             overflow-y: auto;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            background-color: #fefefe;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            background-color: #333333; /* Fundo da lista */
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.2);
         }
 
         #listaTransacoes li {
-            background-color: var(--card-background);
-            border-bottom: 1px solid #eee;
-            padding: 12px 15px;
-            margin-bottom: 0;
+            background-color: #2e2e2e; /* Fundo de cada item da lista */
+            border-bottom: 1px solid #444;
+            padding: 15px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-size: 1em;
-            transition: background-color 0.2s ease;
+            font-size: 1.05em;
+            transition: background-color 0.2s ease, transform 0.1s ease;
         }
         #listaTransacoes li:last-child {
             border-bottom: none;
         }
         #listaTransacoes li:hover {
-            background-color: #f5f5f5;
+            background-color: #3a3a3a;
+            transform: translateX(3px);
         }
 
         #listaTransacoes li.receita {
-            color: var(--primary-dark-color);
+            color: var(--success-color); /* Verde para receita */
+            font-weight: 500;
         }
 
         #listaTransacoes li.despesa {
-            color: var(--danger-color);
+            color: var(--danger-color); /* Vermelho para despesa */
+            font-weight: 500;
         }
 
         #listaTransacoes li span.valor {
             font-weight: bold;
-            font-family: 'Roboto Mono', monospace; /* For numbers */
+            font-family: 'Roboto Mono', monospace; /* Para números */
+            margin-left: auto;
+            padding-right: 15px;
+            color: var(--text-color); /* Manter cor padrão para valor, mas o LI já vai colorir */
+        }
+        #listaTransacoes li.receita span.valor {
+            color: var(--success-color);
+        }
+        #listaTransacoes li.despesa span.valor {
+            color: var(--danger-color);
         }
 
+
         #saldoFluxoContainer {
-            margin-top: 20px;
+            margin-top: 30px;
             text-align: right;
-            font-size: 1.3em;
+            font-size: 1.4em;
             grid-column: 1 / -1;
-            padding-top: 15px;
+            padding-top: 20px;
             border-top: 2px solid var(--primary-color);
             font-weight: bold;
             color: var(--text-color);
         }
 
         #saldoFluxoContainer span {
-            color: var(--secondary-dark-color);
             font-family: 'Roboto Mono', monospace;
             font-size: 1.1em;
+            padding-left: 10px;
         }
         #saldoFluxoContainer span.negative {
             color: var(--danger-color);
         }
         #saldoFluxoContainer span.positive {
-            color: var(--primary-dark-color);
+            color: var(--success-color);
         }
 
         #listaTransacoes li button {
@@ -279,35 +336,41 @@
             color: white;
             border: none;
             border-radius: 50%;
-            width: 30px;
-            height: 30px;
-            font-size: 0.9em;
+            width: 32px;
+            height: 32px;
+            font-size: 1em;
             cursor: pointer;
             display: flex;
             justify-content: center;
             align-items: center;
             padding: 0;
             margin-top: 0;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
             transition: background-color 0.2s ease, transform 0.2s ease;
+            flex-shrink: 0;
         }
         #listaTransacoes li button:hover {
             background-color: var(--danger-dark-color);
-            transform: scale(1.1);
+            transform: scale(1.15);
+            box-shadow: 0 3px 8px rgba(0,0,0,0.3);
+        }
+        #listaTransacoes li button:active {
+            transform: scale(1.0);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
         }
 
         /* Media Queries for Responsiveness */
         @media (max-width: 768px) {
             header h1 {
-                font-size: 2em;
+                font-size: 2.5em;
             }
 
             header p {
-                font-size: 1em;
+                font-size: 1.1em;
             }
 
             h2 {
-                font-size: 1.8em;
+                font-size: 2em;
             }
 
             main {
@@ -316,37 +379,97 @@
             }
 
             section {
-                padding: 15px;
+                padding: 20px;
             }
 
             .calculo-container {
-                grid-template-columns: 1fr; /* Stacks elements vertically on small screens */
+                grid-template-columns: 1fr;
                 padding: 15px;
+                gap: 15px;
             }
 
             .button-group {
-                flex-direction: column; /* Stack buttons vertically */
-                gap: 8px;
+                flex-direction: column;
+                gap: 10px;
+                margin-top: 15px;
             }
 
             button {
-                width: 100%; /* Make buttons full width */
+                width: 100%;
+                padding: 12px 20px;
+                font-size: 1em;
+            }
+
+            p.resultado {
+                font-size: 1.1em;
+                padding: 12px;
             }
 
             #listaTransacoes li {
-                flex-direction: column; /* Stack description/value and button */
-                align-items: flex-start;
-                padding: 10px;
+                flex-direction: row;
+                flex-wrap: wrap;
+                align-items: center;
+                padding: 10px 15px;
             }
-
+            #listaTransacoes li span.valor {
+                margin-left: auto; /* Mantém o valor à direita */
+                padding-right: 0;
+                width: auto; /* Não forçar largura total */
+                text-align: right;
+                margin-top: 0; /* Remove espaço extra se não houver quebra de linha */
+            }
             #listaTransacoes li button {
-                margin-top: 8px;
-                align-self: flex-end; /* Align delete button to the right */
+                order: 3;
+                align-self: center; /* Centraliza o botão na linha */
+                margin-top: 0;
+                margin-right: 0;
+            }
+            /* Ajuste para quebra de linha do texto da descrição */
+            #listaTransacoes li span:first-child {
+                flex-grow: 1; /* Permite que a descrição ocupe o espaço */
+                padding-right: 10px; /* Espaço entre descrição e valor */
             }
 
             #saldoFluxoContainer {
                 text-align: center;
-                font-size: 1.1em;
+                font-size: 1.2em;
+                padding-top: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 2em;
+            }
+            h2 {
+                font-size: 1.8em;
+            }
+            section {
+                padding: 15px;
+            }
+            .calculo-container {
+                padding: 10px;
+            }
+            input[type="number"],
+            input[type="text"],
+            select {
+                padding: 10px;
+                font-size: 0.95em;
+            }
+            button {
+                padding: 10px;
+                font-size: 1em;
+            }
+            p.resultado {
+                font-size: 1em;
+            }
+            #listaTransacoes li {
+                font-size: 0.95em;
+            }
+            #listaTransacoes li button {
+                width: 28px;
+                height: 28px;
+                font-size: 0.85em;
             }
         }
     </style>
@@ -446,7 +569,7 @@
 
         <section id="fluxoDeCaixa">
             <h2>Fluxo de Caixa</h2>
-            <p style="text-align: center; margin-bottom: 15px; color: #555;">Gerencie suas finanças adicionando receitas e despesas.</p>
+            <p style="text-align: center; margin-bottom: 20px; color: var(--info-text-color); font-size: 1.05em;">Gerencie suas finanças adicionando receitas e despesas.</p>
             <div class="calculo-container fluxo-grid">
                 <div class="input-group">
                     <label for="descricaoFluxo">Descrição:</label>
@@ -476,7 +599,7 @@
                 </ul>
 
                 <div id="saldoFluxoContainer" class="full-width">
-                    Saldo Atual: <span id="saldoFluxo" class="positive">0.00</span>
+                    Saldo Atual: <span id="saldoFluxo" class="positive">0,00</span>
                 </div>
             </div>
         </section>
@@ -484,7 +607,7 @@
 
     <footer>
         <p>&copy; 2025 Gustavo. Todos os direitos reservados.</p>
-        <p>Agradecimento especial ao <a href="https://github.com/Gustavo-F-R" style="color: white; text-decoration: underline;">GitHub</a> por hospedar o projeto.</p>
+        <p>Agradecimento especial ao <a href="https://github.com/Gustavo-F-R" target="_blank" rel="noopener noreferrer">GitHub</a> por hospedar o projeto.</p>
     </footer>
 
     <script>
@@ -529,7 +652,7 @@
                     resultadoAritP.classList.remove('error-message');
                 }
             }
-            resultadoAritSpan.textContent = resultado;
+            resultadoAritSpan.textContent = typeof resultado === 'number' ? resultado.toFixed(2).replace('.', ',') : resultado;
         }
 
         function limparAritmeticos() {
@@ -558,7 +681,7 @@
                 resultado = (valorTotal * percentual) / 100;
                 resultadoPorcentagemP.classList.remove('error-message');
             }
-            resultadoPorcentagemSpan.textContent = typeof resultado === 'number' ? resultado.toFixed(2) : resultado;
+            resultadoPorcentagemSpan.textContent = typeof resultado === 'number' ? resultado.toFixed(2).replace('.', ',') : resultado;
         }
 
         function limparPorcentagem() {
@@ -590,8 +713,8 @@
             const juros = capital * taxaJuros * tempo;
             const montante = capital + juros;
 
-            jurosResultadoSpan.textContent = `R$ ${juros.toFixed(2)}`;
-            montanteResultadoSpan.textContent = `R$ ${montante.toFixed(2)}`;
+            jurosResultadoSpan.textContent = `R$ ${juros.toFixed(2).replace('.', ',')}`;
+            montanteResultadoSpan.textContent = `R$ ${montante.toFixed(2).replace('.', ',')}`;
             jurosResultadoP.classList.remove('error-message');
             montanteResultadoP.classList.remove('error-message');
         }
@@ -645,8 +768,16 @@
 
             transacoes.forEach((transacao, index) => {
                 const li = document.createElement('li');
-                li.innerHTML = `${transacao.descricao}: <span class="valor">R$ ${transacao.valor.toFixed(2).replace('.', ',')}</span>`;
                 li.classList.add(transacao.tipo);
+
+                const descriptionSpan = document.createElement('span');
+                descriptionSpan.textContent = transacao.descricao;
+                li.appendChild(descriptionSpan);
+
+                const valueSpan = document.createElement('span');
+                valueSpan.classList.add('valor');
+                valueSpan.textContent = `R$ ${transacao.valor.toFixed(2).replace('.', ',')}`;
+                li.appendChild(valueSpan);
 
                 const removeBtn = document.createElement('button');
                 removeBtn.textContent = 'x';
