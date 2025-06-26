@@ -3,28 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculadora Financeira e Matemática - Gustavo</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Roboto+Mono&display=swap" rel="stylesheet">
+    <title>Calculadora Financeira - Escola Estadual Caio Martins</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@300;400;500;700&family=Roboto+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         :root {
-            /* Cores do Tema Escuro */
-            --background-color: #1a1a1a; /* Preto suave de fundo */
-            --card-background: #282828; /* Fundo dos cartões/seções */
-            --text-color: #f0f0f0; /* Branco suave para texto principal */
-            --header-bg: #111111; /* Preto ainda mais escuro para o cabeçalho */
-
-            /* Roxo Neon Escuro */
-            --primary-color: #8a2be2; /* Roxo para botões, bordas principais */
-            --primary-dark-color: #6a0dad; /* Roxo mais escuro para hover/destaque */
-            --secondary-color: #b366ff; /* Roxo mais claro/neon para detalhes */
-            --secondary-dark-color: #9932cc; /* Roxo médio */
-
-            /* Outras Cores */
-            --border-color: #444; /* Borda sutil */
-            --danger-color: #e53935; /* Vermelho para erros/despesas */
-            --danger-dark-color: #c62828;
-            --success-color: #4caf50; /* Verde para receitas */
-            --info-text-color: #aaaaaa; /* Texto de informação mais claro */
+            /* Updated Professional Color Palette */
+            --background-color: #f8f9fa; /* Very light gray */
+            --card-background: #ffffff; /* White cards */
+            --text-color: #343a40; /* Dark charcoal */
+            --header-bg: #001f3f; /* Very dark blue */
+            --primary-color: #2C5F7F; /* Deeper professional blue */
+            --primary-dark-color: #214d64; /* Even darker blue */
+            --secondary-color: #6BBF87; /* Soft green accent */
+            --border-color: #e9ecef; /* Lighter gray border */
+            --danger-color: #dc3545; /* Bootstrap red */
+            --danger-dark-color: #c82333;
+            --success-color: #28a745; /* Bootstrap green */
+            --info-text-color: #6c757d; /* Muted gray for info text */
+            --shadow-light: 0 4px 15px rgba(0,0,0,0.08); /* More pronounced shadow */
+            --shadow-medium: 0 8px 25px rgba(0,0,0,0.12);
         }
 
         body {
@@ -38,295 +36,384 @@
             -moz-osx-font-smoothing: grayscale;
         }
 
-        header {
+        /* Cabeçalho da Escola */
+        .school-header {
             background-color: var(--header-bg);
-            padding: 40px 20px;
+            color: white;
+            padding: 30px 0; /* More vertical padding */
             text-align: center;
-            border-bottom: 2px solid var(--primary-color);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.5); /* Sombra mais visível no escuro */
+            box-shadow: var(--shadow-medium);
+            position: relative;
+            z-index: 10;
         }
 
-        header h1 {
-            margin-bottom: 10px;
-            font-size: 3.2em;
-            color: var(--secondary-color); /* Roxo neon para o título */
-            text-shadow: 0 0 10px rgba(138, 43, 226, 0.5); /* Efeito neon sutil */
-            letter-spacing: 1px;
+        .school-header img {
+            max-height: 100px; /* Slightly larger logo */
+            margin-bottom: 15px;
+            /* border-radius: 50%; Removed circular cropping */
+            border: 4px solid rgba(255,255,255,0.2);
+            object-fit: contain; /* Use contain to fit the entire image within the max-height */
+        }
+
+        .school-header h1 {
+            margin: 0;
+            font-family: 'Montserrat', sans-serif; /* New font for heading */
+            font-size: 2.8em;
             font-weight: 700;
+            letter-spacing: 1.5px;
         }
 
-        header p {
+        .school-header p {
+            margin: 10px 0 0;
+            font-size: 1.3em;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+
+        /* Navegação por abas */
+        .tab-container {
+            max-width: 1000px;
+            margin: 40px auto 0; /* More margin */
+            padding: 0 20px;
+        }
+
+        .tabs {
+            display: flex;
+            border-bottom: 2px solid var(--border-color);
+            margin-bottom: 30px; /* More margin */
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .tab-button {
+            padding: 15px 35px; /* More padding */
+            background: none;
+            border: none;
+            cursor: pointer;
             font-size: 1.2em;
             color: var(--info-text-color);
-            margin-top: 5px;
+            border-bottom: 4px solid transparent;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            flex-grow: 1;
+            text-align: center;
+            white-space: nowrap;
         }
 
+        .tab-button i {
+            margin-right: 8px; /* Space for icon */
+        }
+
+        .tab-button:hover {
+            color: var(--primary-color);
+            background-color: rgba(44, 95, 127, 0.05); /* Light hover background */
+        }
+
+        .tab-button.active {
+            color: var(--primary-color);
+            border-bottom: 4px solid var(--primary-color);
+            font-weight: 600;
+            background-color: rgba(44, 95, 127, 0.08); /* Active background */
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.7s ease-out; /* Slower and smoother fade */
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Conteúdo principal */
         main {
-            padding: 30px 20px;
-            max-width: 960px;
-            margin: 40px auto;
-            background-color: var(--card-background);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            box-shadow: 0 6px 25px rgba(0,0,0,0.4); /* Sombra proeminente */
+            max-width: 1000px;
+            margin: 0 auto 60px; /* More margin at bottom */
+            padding: 0 20px;
         }
 
         section {
-            margin-bottom: 50px;
-            padding: 30px;
+            background-color: var(--card-background);
+            border-radius: 12px; /* More rounded corners */
+            padding: 40px; /* More internal padding */
+            margin-bottom: 40px; /* More space between sections */
+            box-shadow: var(--shadow-light);
             border: 1px solid var(--border-color);
-            background-color: #333333; /* Fundo ligeiramente mais claro para seções */
-            border-radius: 10px;
-            box-shadow: inset 0 1px 5px rgba(0,0,0,0.3);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        section:hover {
+            transform: translateY(-5px); /* More pronounced lift */
+            box-shadow: var(--shadow-medium);
         }
 
         h2 {
-            color: var(--secondary-color); /* Roxo neon para os títulos de seção */
+            color: var(--primary-color);
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 40px; /* More space below heading */
+            font-family: 'Montserrat', sans-serif; /* New font for heading */
             font-size: 2.6em;
-            padding-bottom: 15px;
+            padding-bottom: 20px;
             position: relative;
             font-weight: 700;
-            text-shadow: 0 0 8px rgba(179, 102, 255, 0.4); /* Efeito neon sutil */
         }
+
         h2::after {
             content: '';
             position: absolute;
             left: 50%;
             bottom: 0;
             transform: translateX(-50%);
-            width: 80px;
-            height: 3px;
-            background-color: var(--primary-color); /* Linha roxa */
-            border-radius: 2px;
+            width: 90px; /* Wider underline */
+            height: 5px; /* Thicker underline */
+            background-color: var(--secondary-color);
+            border-radius: 3px;
         }
 
         .calculo-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-            padding: 25px;
-            background-color: var(--background-color); /* Usar o fundo principal */
+            gap: 30px; /* More space between inputs */
+            padding: 30px;
+            background-color: var(--background-color);
             border-radius: 10px;
-            margin-top: 25px;
-            border: 1px solid var(--border-color); /* Bordas para a área de calculo */
+            margin-top: 30px;
+            border: 1px dashed var(--border-color);
         }
 
         .input-group {
             display: flex;
             flex-direction: column;
+            position: relative; /* For error messages */
         }
 
         label {
-            margin-bottom: 8px;
+            margin-bottom: 12px; /* More space below label */
             color: var(--text-color);
             font-weight: 500;
-            font-size: 0.95em;
+            font-size: 1.05em;
         }
 
         input[type="number"],
         input[type="text"],
         select {
-            padding: 12px;
-            border: 1px solid var(--border-border-color); /* Borda mais escura para inputs */
-            border-radius: 6px;
+            padding: 15px; /* More padding for inputs */
+            border: 1px solid var(--border-color);
+            border-radius: 9px; /* More rounded inputs */
             width: 100%;
             box-sizing: border-box;
-            font-size: 1em;
+            font-size: 1.1em;
             transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
-            background-color: #3d3d3d; /* Fundo dos inputs */
+            background-color: white;
             color: var(--text-color);
         }
+
         input[type="number"]:focus,
         input[type="text"]:focus,
         select:focus {
-            border-color: var(--primary-color); /* Borda roxa ao focar */
-            box-shadow: 0 0 0 4px rgba(138, 43, 226, 0.3); /* Sombra roxa ao focar */
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 5px rgba(44, 95, 127, 0.25); /* More prominent focus shadow */
             outline: none;
-            background-color: #4a4a4a; /* Ligeiramente mais claro ao focar */
+            background-color: #fcfdfe;
+        }
+
+        /* Input invalid style */
+        input.is-invalid, select.is-invalid {
+            border-color: var(--danger-color) !important;
+            box-shadow: 0 0 0 5px rgba(220, 53, 69, 0.25) !important;
+        }
+
+        .error-message-inline {
+            color: var(--danger-color);
+            font-size: 0.85em;
+            margin-top: 5px;
+            display: none; /* Hidden by default */
+            font-weight: 500;
+        }
+
+        .input-group.has-error .error-message-inline {
+            display: block;
         }
 
         button {
             background-color: var(--primary-color);
             color: white;
             border: none;
-            padding: 14px 25px;
+            padding: 16px 35px; /* More padding for buttons */
             cursor: pointer;
             font-size: 1.1em;
-            font-weight: 500;
-            width: auto;
-            margin-top: 15px;
-            border-radius: 6px;
+            font-weight: 600;
+            border-radius: 9px;
             transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-            box-shadow: 0 2px 8px rgba(138, 43, 226, 0.3); /* Sombra roxa para botões */
+            box-shadow: 0 5px 12px rgba(0,0,0,0.1);
+            display: flex; /* For icon alignment */
+            align-items: center;
+            justify-content: center;
+            gap: 8px; /* Space between text and icon */
+        }
+
+        button i {
+            font-size: 1.1em;
         }
 
         button:hover {
             background-color: var(--primary-dark-color);
-            transform: translateY(-3px);
-            box-shadow: 0 4px 15px rgba(138, 43, 226, 0.4);
+            transform: translateY(-4px); /* More pronounced lift on hover */
+            box-shadow: 0 8px 18px rgba(0,0,0,0.15);
         }
 
         button:active {
             transform: translateY(0);
-            box-shadow: 0 1px 5px rgba(138, 43, 226, 0.2);
+            box-shadow: 0 3px 8px rgba(0,0,0,0.1);
         }
 
         button.clear-btn {
-            background-color: #555; /* Cinza mais neutro para limpar */
-            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            background-color: #6c757d; /* Muted gray for clear button */
         }
+
         button.clear-btn:hover {
-            background-color: #777;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+            background-color: #5a6268; /* Darker muted gray */
         }
 
         .button-group {
             display: flex;
-            gap: 15px;
+            gap: 25px; /* More space between buttons */
             justify-content: center;
             grid-column: 1 / -1;
-            margin-top: 20px;
+            margin-top: 30px; /* More space above buttons */
+            flex-wrap: wrap;
         }
 
         p.resultado {
-            margin-top: 25px;
-            font-size: 1.3em;
+            margin-top: 30px; /* More space above result */
+            font-size: 1.4em; /* Larger result text */
             text-align: center;
             font-weight: bold;
-            padding: 15px;
-            background-color: #3a3a3a; /* Fundo mais escuro para o resultado */
-            border-radius: 8px;
-            border: 1px solid var(--border-color);
+            padding: 20px; /* More padding for result box */
+            background-color: #e6ffe6; /* Light green background for positive results */
+            border-radius: 10px;
+            border: 1px solid #c0e0c0; /* Green border */
             color: var(--text-color);
+            box-shadow: inset 0 1px 4px rgba(0,0,0,0.06);
         }
 
         p.resultado span {
-            color: var(--secondary-color); /* Roxo neon para o valor do resultado */
+            color: var(--primary-color);
             font-weight: 700;
-            text-shadow: 0 0 5px rgba(179, 102, 255, 0.3);
+            font-family: 'Roboto Mono', monospace;
         }
+
+        p.resultado.error-message {
+            background-color: #ffe6e6; /* Light red for error results */
+            border-color: #e0c0c0; /* Red border */
+            color: var(--danger-color);
+        }
+
         p.resultado.error-message span {
             color: var(--danger-color);
-            text-shadow: none; /* Remover neon em erro */
-        }
-
-        hr {
-            border: 0;
-            height: 1px;
-            background-image: linear-gradient(to right, rgba(0, 0, 0, 0), var(--border-color), rgba(0, 0, 0, 0));
-            margin: 50px 0;
-        }
-
-        footer {
-            text-align: center;
-            padding: 25px;
-            background-color: var(--header-bg); /* O mesmo do header */
-            color: var(--info-text-color);
-            margin-top: 40px;
-            border-radius: 0 0 12px 12px;
-            font-size: 0.95em;
-            box-shadow: 0 -2px 10px rgba(0,0,0,0.5);
-        }
-        footer a {
-            color: var(--secondary-color); /* Roxo neon para links no footer */
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.2s ease;
-        }
-        footer a:hover {
-            color: var(--primary-color);
-            text-decoration: underline;
         }
 
         /* Estilos específicos para o Fluxo de Caixa */
         #fluxoDeCaixa h3 {
-            color: var(--secondary-color); /* Roxo neon */
-            margin-top: 25px;
+            color: var(--primary-color);
+            margin-top: 35px; /* More space above sub-heading */
             text-align: center;
-            font-size: 1.8em;
+            font-size: 2em; /* Larger sub-heading */
             grid-column: 1 / -1;
-            padding-bottom: 12px;
-            border-bottom: 1px dashed var(--primary-color); /* Linha roxa tracejada */
+            padding-bottom: 18px;
+            border-bottom: 2px dashed var(--border-color);
             font-weight: 600;
         }
 
         #listaTransacoes {
             list-style: none;
             padding: 0;
-            margin-top: 20px;
+            margin-top: 30px;
             grid-column: 1 / -1;
-            max-height: 350px;
+            max-height: 450px; /* Taller list */
             overflow-y: auto;
             border: 1px solid var(--border-color);
-            border-radius: 8px;
-            background-color: #333333; /* Fundo da lista */
-            box-shadow: inset 0 1px 3px rgba(0,0,0,0.2);
+            border-radius: 10px;
+            background-color: white;
+            box-shadow: inset 0 1px 6px rgba(0,0,0,0.06);
         }
 
         #listaTransacoes li {
-            background-color: #2e2e2e; /* Fundo de cada item da lista */
-            border-bottom: 1px solid #444;
-            padding: 15px 20px;
+            background-color: white;
+            border-bottom: 1px solid var(--border-color);
+            padding: 20px 30px; /* More padding */
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-size: 1.05em;
+            font-size: 1.1em;
             transition: background-color 0.2s ease, transform 0.1s ease;
         }
+
         #listaTransacoes li:last-child {
             border-bottom: none;
         }
+
         #listaTransacoes li:hover {
-            background-color: #3a3a3a;
-            transform: translateX(3px);
+            background-color: #fefefe;
+            transform: translateX(5px); /* Slight movement on hover */
         }
 
         #listaTransacoes li.receita {
-            color: var(--success-color); /* Verde para receita */
+            color: var(--success-color);
             font-weight: 500;
         }
 
         #listaTransacoes li.despesa {
-            color: var(--danger-color); /* Vermelho para despesa */
+            color: var(--danger-color);
             font-weight: 500;
         }
 
         #listaTransacoes li span.valor {
             font-weight: bold;
-            font-family: 'Roboto Mono', monospace; /* Para números */
+            font-family: 'Roboto Mono', monospace;
             margin-left: auto;
-            padding-right: 15px;
-            color: var(--text-color); /* Manter cor padrão para valor, mas o LI já vai colorir */
+            padding-right: 25px; /* More space before button */
+            font-size: 1.2em;
         }
+
         #listaTransacoes li.receita span.valor {
             color: var(--success-color);
         }
+
         #listaTransacoes li.despesa span.valor {
             color: var(--danger-color);
         }
 
-
         #saldoFluxoContainer {
-            margin-top: 30px;
+            margin-top: 40px; /* More space above balance */
             text-align: right;
-            font-size: 1.4em;
+            font-size: 1.6em; /* Larger balance text */
             grid-column: 1 / -1;
-            padding-top: 20px;
-            border-top: 2px solid var(--primary-color);
+            padding-top: 30px; /* More padding above line */
+            border-top: 2px solid var(--primary-color); /* Stronger separator */
             font-weight: bold;
-            color: var(--text-color);
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 12px;
+            color: var(--text-color); /* Ensure text color is consistent */
         }
 
         #saldoFluxoContainer span {
             font-family: 'Roboto Mono', monospace;
-            font-size: 1.1em;
-            padding-left: 10px;
+            font-size: 1.25em;
+            padding-left: 0;
         }
+
         #saldoFluxoContainer span.negative {
             color: var(--danger-color);
         }
+
         #saldoFluxoContainer span.positive {
             color: var(--success-color);
         }
@@ -336,46 +423,174 @@
             color: white;
             border: none;
             border-radius: 50%;
-            width: 32px;
-            height: 32px;
-            font-size: 1em;
+            width: 36px; /* Larger delete button */
+            height: 36px;
+            font-size: 1.1em;
             cursor: pointer;
             display: flex;
             justify-content: center;
             align-items: center;
             padding: 0;
-            margin-top: 0;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-            transition: background-color 0.2s ease, transform 0.2s ease;
+            transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.1);
             flex-shrink: 0;
         }
+
         #listaTransacoes li button:hover {
             background-color: var(--danger-dark-color);
-            transform: scale(1.15);
-            box-shadow: 0 3px 8px rgba(0,0,0,0.3);
-        }
-        #listaTransacoes li button:active {
-            transform: scale(1.0);
-            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+            transform: scale(1.1); /* More pronounced scale */
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
         }
 
-        /* Media Queries for Responsiveness */
+        /* Rodapé */
+        footer {
+            text-align: center;
+            padding: 40px; /* More padding */
+            background-color: var(--header-bg);
+            color: white;
+            margin-top: 60px; /* More margin */
+            font-size: 0.98em;
+            box-shadow: 0 -3px 12px rgba(0,0,0,0.15);
+        }
+
+        footer a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        footer a:hover {
+            color: #8cde9f; /* Lighter secondary on hover */
+            text-decoration: underline;
+        }
+
+        /* Responsividade */
         @media (max-width: 768px) {
-            header h1 {
-                font-size: 2.5em;
+            .school-header h1 {
+                font-size: 2.3em;
             }
 
-            header p {
+            .school-header p {
+                font-size: 1.2em;
+            }
+
+            .tab-button {
+                padding: 13px 25px;
                 font-size: 1.1em;
+                flex-basis: 50%;
+            }
+
+            section {
+                padding: 30px;
             }
 
             h2 {
+                font-size: 2.2em;
+                margin-bottom: 30px;
+            }
+
+            .calculo-container {
+                grid-template-columns: 1fr;
+                padding: 25px;
+                gap: 25px;
+            }
+
+            .button-group {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            button {
+                width: 100%;
+            }
+
+            p.resultado {
+                font-size: 1.25em;
+                padding: 18px;
+            }
+
+            #fluxoDeCaixa h3 {
+                font-size: 1.8em;
+            }
+
+            #listaTransacoes li {
+                flex-wrap: wrap;
+                padding: 18px 25px;
+            }
+
+            #listaTransacoes li span.valor {
+                margin-left: 0;
+                flex-basis: 100%;
+                text-align: right;
+                padding-right: 0;
+                margin-top: 8px;
+            }
+
+            #listaTransacoes li button {
+                margin-top: 12px;
+                margin-left: auto;
+                order: 3;
+            }
+
+            #saldoFluxoContainer {
+                font-size: 1.5em;
+                padding-top: 25px;
+                flex-direction: column;
+                align-items: flex-end;
+            }
+
+            #saldoFluxoContainer span {
+                font-size: 1.15em;
+                margin-top: 8px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .school-header {
+                padding: 25px 0;
+            }
+
+            .school-header img {
+                max-height: 80px;
+            }
+
+            .school-header h1 {
                 font-size: 2em;
             }
 
-            main {
-                margin: 20px auto;
-                padding: 15px;
+            .school-header p {
+                font-size: 1em;
+            }
+
+            .tabs {
+                flex-direction: column;
+                border-bottom: none; /* Remove bottom border from tab container */
+            }
+
+            .tab-button {
+                padding: 12px 20px;
+                font-size: 1em;
+                flex-basis: auto;
+                border-bottom: none;
+                border-top: 1px solid var(--border-color); /* Add top border for separation */
+                border-left: 4px solid transparent; /* Prepare for left active indicator */
+                text-align: left; /* Align text left */
+            }
+
+            .tab-button:first-child {
+                border-top: none;
+            }
+
+            .tab-button.active {
+                border-bottom: none;
+                border-left: 4px solid var(--primary-color); /* Active indicator on the left */
+                background-color: rgba(44, 95, 127, 0.1);
+            }
+
+            h2 {
+                font-size: 1.8em;
+                margin-bottom: 25px;
             }
 
             section {
@@ -383,276 +598,335 @@
             }
 
             .calculo-container {
-                grid-template-columns: 1fr;
-                padding: 15px;
-                gap: 15px;
+                padding: 20px;
+                gap: 20px;
             }
 
-            .button-group {
-                flex-direction: column;
-                gap: 10px;
-                margin-top: 15px;
+            label {
+                margin-bottom: 8px;
+            }
+
+            input[type="number"],
+            input[type="text"],
+            select {
+                padding: 13px;
+                font-size: 1.05em;
             }
 
             button {
-                width: 100%;
-                padding: 12px 20px;
-                font-size: 1em;
+                padding: 13px 25px;
+                font-size: 1.05em;
             }
 
             p.resultado {
                 font-size: 1.1em;
-                padding: 12px;
+                padding: 15px;
+            }
+
+            #fluxoDeCaixa h3 {
+                font-size: 1.6em;
+                margin-top: 25px;
             }
 
             #listaTransacoes li {
-                flex-direction: row;
-                flex-wrap: wrap;
-                align-items: center;
-                padding: 10px 15px;
+                padding: 15px 20px;
+                font-size: 1em;
             }
+
             #listaTransacoes li span.valor {
-                margin-left: auto; /* Mantém o valor à direita */
-                padding-right: 0;
-                width: auto; /* Não forçar largura total */
-                text-align: right;
-                margin-top: 0; /* Remove espaço extra se não houver quebra de linha */
-            }
-            #listaTransacoes li button {
-                order: 3;
-                align-self: center; /* Centraliza o botão na linha */
-                margin-top: 0;
-                margin-right: 0;
-            }
-            /* Ajuste para quebra de linha do texto da descrição */
-            #listaTransacoes li span:first-child {
-                flex-grow: 1; /* Permite que a descrição ocupe o espaço */
-                padding-right: 10px; /* Espaço entre descrição e valor */
+                font-size: 1.05em;
             }
 
             #saldoFluxoContainer {
-                text-align: center;
-                font-size: 1.2em;
-                padding-top: 15px;
+                font-size: 1.3em;
+                padding-top: 20px;
             }
-        }
 
-        @media (max-width: 480px) {
-            header h1 {
-                font-size: 2em;
-            }
-            h2 {
-                font-size: 1.8em;
-            }
-            section {
-                padding: 15px;
-            }
-            .calculo-container {
-                padding: 10px;
-            }
-            input[type="number"],
-            input[type="text"],
-            select {
-                padding: 10px;
-                font-size: 0.95em;
-            }
-            button {
-                padding: 10px;
-                font-size: 1em;
-            }
-            p.resultado {
-                font-size: 1em;
-            }
-            #listaTransacoes li {
-                font-size: 0.95em;
-            }
-            #listaTransacoes li button {
-                width: 28px;
-                height: 28px;
-                font-size: 0.85em;
+            #saldoFluxoContainer span {
+                font-size: 1.05em;
             }
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Minha Calculadora Completa</h1>
-        <p>Ferramentas matemáticas e financeiras para o seu dia a dia.</p>
-        <p>Desenvolvido por Gustavo</p>
-    </header>
+    <div class="school-header">
+        <img src="https://scontent.fmoc4-1.fna.fbcdn.net/v/t39.30808-6/288394838_2591361004328799_436918289814594622_n.png?_nc_cat=105&ccb=1-7&_nc_sid=cc71e4&_nc_ohc=WOKC2zsPZrkQ7kNvwFXIzG_&_nc_oc=Adn0QpDmc-WoGoS3gKQcZG6xbGvn3LNf9cTy9a3y8fBuriUtNhOAcSooNneFknGIKE0&_nc_zt=23&_nc_ht=scontent.fmoc4-1.fna&_nc_gid=xo8OR1dEm8Khr1T21YMWLQ&oh=00_AfNoej_C48Bh--r742PBxwbThZ4roVFD9cB5Um9EC8WQNw&oe=68625344" alt="Logo Escola Estadual Caio Martins">
+        <h1>Escola Estadual Caio Martins</h1>
+        <p>Calculadora Financeira e Matemática</p>
+    </div>
+
+    <div class="tab-container">
+        <nav class="tabs">
+            <button class="tab-button active" data-tab="aritmetica"><i class="fas fa-calculator"></i> Aritmética</button>
+            <button class="tab-button" data-tab="porcentagem"><i class="fas fa-percent"></i> Porcentagem</button>
+            <button class="tab-button" data-tab="juros"><i class="fas fa-money-bill-wave"></i> Juros Simples</button>
+            <button class="tab-button" data-tab="fluxo"><i class="fas fa-cash-register"></i> Fluxo de Caixa</button>
+        </nav>
+    </div>
 
     <main>
-        <section id="aritmeticos">
-            <h2>Operadores Aritméticos</h2>
-            <div class="calculo-container">
-                <div class="input-group">
-                    <label for="num1Arit">Número 1:</label>
-                    <input type="number" id="num1Arit" placeholder="Digite o primeiro número" value="">
+        <div id="aritmetica" class="tab-content active">
+            <section>
+                <h2>Operadores Aritméticos</h2>
+                <div class="calculo-container">
+                    <div class="input-group">
+                        <label for="num1Arit">Número 1:</label>
+                        <input type="number" id="num1Arit" placeholder="Digite o primeiro número">
+                        <span class="error-message-inline" id="errorNum1Arit"></span>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="operadorArit">Operador:</label>
+                        <select id="operadorArit">
+                            <option value="+">Adição (+)</option>
+                            <option value="-">Subtração (-)</option>
+                            <option value="*">Multiplicação (*)</option>
+                            <option value="/">Divisão (/)</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="num2Arit">Número 2:</label>
+                        <input type="number" id="num2Arit" placeholder="Digite o segundo número">
+                        <span class="error-message-inline" id="errorNum2Arit"></span>
+                    </div>
+
+                    <div class="button-group">
+                        <button id="calculateAritmeticosBtn"><i class="fas fa-equals"></i> Calcular Operação</button>
+                        <button class="clear-btn" id="clearAritmeticosBtn"><i class="fas fa-sync-alt"></i> Limpar</button>
+                    </div>
+                    <p class="resultado">Resultado: <span id="resultadoArit"></span></p>
                 </div>
+            </section>
+        </div>
 
-                <div class="input-group">
-                    <label for="operadorArit">Operador:</label>
-                    <select id="operadorArit">
-                        <option value="+">Adição (+)</option>
-                        <option value="-">Subtração (-)</option>
-                        <option value="*">Multiplicação (*)</option>
-                        <option value="/">Divisão (/)</option>
-                    </select>
+        <div id="porcentagem" class="tab-content">
+            <section>
+                <h2>Cálculo de Porcentagem</h2>
+                <p style="text-align: center; margin-bottom: 25px; color: var(--info-text-color);">Calcule X% de um valor total.</p>
+                <div class="calculo-container">
+                    <div class="input-group">
+                        <label for="valorPorcentagem">Valor Total:</label>
+                        <input type="number" id="valorPorcentagem" placeholder="Ex: 200">
+                        <span class="error-message-inline" id="errorValorPorcentagem"></span>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="percentual">Percentual (%):</label>
+                        <input type="number" id="percentual" placeholder="Ex: 10">
+                        <span class="error-message-inline" id="errorPercentual"></span>
+                    </div>
+
+                    <div class="button-group">
+                        <button id="calculatePorcentagemBtn"><i class="fas fa-calculator"></i> Calcular Porcentagem</button>
+                        <button class="clear-btn" id="clearPorcentagemBtn"><i class="fas fa-sync-alt"></i> Limpar</button>
+                    </div>
+                    <p class="resultado">Resultado: <span id="resultadoPorcentagem"></span></p>
                 </div>
+            </section>
+        </div>
 
-                <div class="input-group">
-                    <label for="num2Arit">Número 2:</label>
-                    <input type="number" id="num2Arit" placeholder="Digite o segundo número" value="">
+        <div id="juros" class="tab-content">
+            <section>
+                <h2>Juros Simples</h2>
+                <p style="text-align: center; margin-bottom: 25px; color: var(--info-text-color);">Calcule os juros e o montante final.</p>
+                <div class="calculo-container">
+                    <div class="input-group">
+                        <label for="capital">Capital Inicial (C):</label>
+                        <input type="number" id="capital" placeholder="Ex: 1000">
+                        <span class="error-message-inline" id="errorCapital"></span>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="taxaJuros">Taxa de Juros (i - % ao período):</label>
+                        <input type="number" id="taxaJuros" placeholder="Ex: 5 (5%)">
+                        <span class="error-message-inline" id="errorTaxaJuros"></span>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="tempo">Tempo (t - em períodos):</label>
+                        <input type="number" id="tempo" placeholder="Ex: 12 (meses/anos)">
+                        <span class="error-message-inline" id="errorTempo"></span>
+                    </div>
+
+                    <div class="button-group">
+                        <button id="calculateJurosSimplesBtn"><i class="fas fa-hand-holding-usd"></i> Calcular Juros e Montante</button>
+                        <button class="clear-btn" id="clearJurosSimplesBtn"><i class="fas fa-sync-alt"></i> Limpar</button>
+                    </div>
+                    <p class="resultado">Juros Gerados: <span id="jurosResultado"></span></p>
+                    <p class="resultado">Montante Final: <span id="montanteResultado"></span></p>
                 </div>
+            </section>
+        </div>
 
-                <div class="button-group">
-                    <button onclick="calcularAritmeticos()">Calcular Operação</button>
-                    <button class="clear-btn" onclick="limparAritmeticos()">Limpar</button>
+        <div id="fluxo" class="tab-content">
+            <section>
+                <h2>Fluxo de Caixa</h2>
+                <p style="text-align: center; margin-bottom: 25px; color: var(--info-text-color);">Gerencie suas finanças adicionando receitas e despesas.</p>
+                <div class="calculo-container">
+                    <div class="input-group">
+                        <label for="descricaoFluxo">Descrição:</label>
+                        <input type="text" id="descricaoFluxo" placeholder="Ex: Salário, Aluguel, Venda">
+                        <span class="error-message-inline" id="errorDescricaoFluxo"></span>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="valorFluxo">Valor:</label>
+                        <input type="number" id="valorFluxo" placeholder="Ex: 1500, 50">
+                        <span class="error-message-inline" id="errorValorFluxo"></span>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="tipoFluxo">Tipo:</label>
+                        <select id="tipoFluxo">
+                            <option value="receita">Receita</option>
+                            <option value="despesa">Despesa</option>
+                        </select>
+                    </div>
+
+                    <div class="button-group" style="grid-column: 1 / -1; justify-content: space-between;">
+                        <button id="addTransactionFluxoBtn"><i class="fas fa-plus-circle"></i> Adicionar Transação</button>
+                        <button class="clear-btn" id="clearFluxoDeCaixaBtn"><i class="fas fa-trash-alt"></i> Limpar Tudo</button>
+                    </div>
+
+                    <h3>Extrato de Transações</h3>
+                    <ul id="listaTransacoes">
+                        </ul>
+
+                    <div id="saldoFluxoContainer">
+                        Saldo Atual: <span id="saldoFluxo" class="positive">0,00</span>
+                    </div>
                 </div>
-                <p class="resultado full-width">Resultado: <span id="resultadoArit"></span></p>
-            </div>
-        </section>
-
-        <hr>
-
-        <section id="porcentagem">
-            <h2>Cálculo de Porcentagem</h2>
-            <div class="calculo-container">
-                <div class="input-group">
-                    <label for="valorPorcentagem">Valor Total:</label>
-                    <input type="number" id="valorPorcentagem" placeholder="Ex: 200" value="">
-                </div>
-
-                <div class="input-group">
-                    <label for="percentual">Percentual (%):</label>
-                    <input type="number" id="percentual" placeholder="Ex: 10" value="">
-                </div>
-
-                <div class="button-group">
-                    <button onclick="calcularPorcentagem()">Calcular Porcentagem</button>
-                    <button class="clear-btn" onclick="limparPorcentagem()">Limpar</button>
-                </div>
-                <p class="resultado full-width">Resultado: <span id="resultadoPorcentagem"></span></p>
-            </div>
-        </section>
-
-        <hr>
-
-        <section id="jurosSimples">
-            <h2>Juros Simples</h2>
-            <div class="calculo-container">
-                <div class="input-group">
-                    <label for="capital">Capital Inicial (C):</label>
-                    <input type="number" id="capital" placeholder="Ex: 1000" value="">
-                </div>
-
-                <div class="input-group">
-                    <label for="taxaJuros">Taxa de Juros (i - % ao período):</label>
-                    <input type="number" id="taxaJuros" placeholder="Ex: 5 (5%)" value="">
-                </div>
-
-                <div class="input-group">
-                    <label for="tempo">Tempo (t - em períodos):</label>
-                    <input type="number" id="tempo" placeholder="Ex: 12 (meses/anos)" value="">
-                </div>
-
-                <div class="button-group">
-                    <button onclick="calcularJurosSimples()">Calcular Juros e Montante</button>
-                    <button class="clear-btn" onclick="limparJurosSimples()">Limpar</button>
-                </div>
-                <p class="resultado full-width">Juros Gerados: <span id="jurosResultado"></span></p>
-                <p class="resultado full-width">Montante Final: <span id="montanteResultado"></span></p>
-            </div>
-        </section>
-
-        <hr>
-
-        <section id="fluxoDeCaixa">
-            <h2>Fluxo de Caixa</h2>
-            <p style="text-align: center; margin-bottom: 20px; color: var(--info-text-color); font-size: 1.05em;">Gerencie suas finanças adicionando receitas e despesas.</p>
-            <div class="calculo-container fluxo-grid">
-                <div class="input-group">
-                    <label for="descricaoFluxo">Descrição:</label>
-                    <input type="text" id="descricaoFluxo" placeholder="Ex: Salário, Aluguel, Venda" value="">
-                </div>
-
-                <div class="input-group">
-                    <label for="valorFluxo">Valor:</label>
-                    <input type="number" id="valorFluxo" placeholder="Ex: 1500, 50" value="">
-                </div>
-
-                <div class="input-group">
-                    <label for="tipoFluxo">Tipo:</label>
-                    <select id="tipoFluxo">
-                        <option value="receita">Receita</option>
-                        <option value="despesa">Despesa</option>
-                    </select>
-                </div>
-
-                <div class="button-group" style="grid-column: 1 / -1; justify-content: space-between;">
-                    <button onclick="adicionarTransacaoFluxo()">Adicionar Transação</button>
-                    <button class="clear-btn" onclick="limparFluxoDeCaixa()">Limpar Tudo</button>
-                </div>
-
-                <h3 class="full-width">Extrato de Transações</h3>
-                <ul id="listaTransacoes" class="full-width">
-                </ul>
-
-                <div id="saldoFluxoContainer" class="full-width">
-                    Saldo Atual: <span id="saldoFluxo" class="positive">0,00</span>
-                </div>
-            </div>
-        </section>
+            </section>
+        </div>
     </main>
 
     <footer>
-        <p>&copy; 2025 Gustavo. Todos os direitos reservados.</p>
-        <p>Agradecimento especial ao <a href="https://github.com/Gustavo-F-R" target="_blank" rel="noopener noreferrer">GitHub</a> por hospedar o projeto.</p>
+        <p>&copy; 2025 Escola Estadual Caio Martins. Todos os direitos reservados.</p>
+        <p>Desenvolvido por <a href="https://github.com/Gustavo-F-R" target="_blank">Gustavo</a> para fins educacionais.</p>
     </footer>
 
     <script>
-        // --- Lógica JavaScript do Site ---
+        document.addEventListener('DOMContentLoaded', () => {
+            // Tab switching logic
+            const tabButtons = document.querySelectorAll('.tab-button');
+            tabButtons.forEach(button => {
+                button.addEventListener('click', (event) => {
+                    const tabName = event.currentTarget.dataset.tab;
+                    openTab(tabName, event.currentTarget);
+                });
+            });
+
+            // Set initial active tab (Aritmética)
+            openTab('aritmetica', document.querySelector('.tab-button[data-tab="aritmetica"]'));
+
+            // Attach event listeners for Aritmetica
+            document.getElementById('calculateAritmeticosBtn').addEventListener('click', calcularAritmeticos);
+            document.getElementById('clearAritmeticosBtn').addEventListener('click', limparAritmeticos);
+
+            // Attach event listeners for Porcentagem
+            document.getElementById('calculatePorcentagemBtn').addEventListener('click', calcularPorcentagem);
+            document.getElementById('clearPorcentagemBtn').addEventListener('click', limparPorcentagem);
+
+            // Attach event listeners for Juros Simples
+            document.getElementById('calculateJurosSimplesBtn').addEventListener('click', calcularJurosSimples);
+            document.getElementById('clearJurosSimplesBtn').addEventListener('click', limparJurosSimples);
+
+            // Attach event listeners for Fluxo de Caixa
+            document.getElementById('addTransactionFluxoBtn').addEventListener('click', adicionarTransacaoFluxo);
+            document.getElementById('clearFluxoDeCaixaBtn').addEventListener('click', limparFluxoDeCaixa);
+
+            // Load transactions from local storage on page load
+            loadTransactionsFromLocalStorage();
+            atualizarFluxoDeCaixa(); // Initial update
+        });
+
+        // Function to handle tab switching
+        function openTab(tabName, clickedButton) {
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(content => content.classList.remove('active'));
+
+            const tabButtons = document.querySelectorAll('.tab-button');
+            tabButtons.forEach(button => button.classList.remove('active'));
+
+            document.getElementById(tabName).classList.add('active');
+            clickedButton.classList.add('active');
+        }
+
+        // --- Helper function for input validation and error display ---
+        function validateInput(inputElement, errorMessageElement, validationFn) {
+            const isValid = validationFn(inputElement.value);
+            if (!isValid) {
+                inputElement.classList.add('is-invalid');
+                inputElement.closest('.input-group').classList.add('has-error');
+                errorMessageElement.textContent = inputElement.dataset.errorMessage || 'Campo obrigatório ou valor inválido.';
+                return false;
+            } else {
+                inputElement.classList.remove('is-invalid');
+                inputElement.closest('.input-group').classList.remove('has-error');
+                errorMessageElement.textContent = '';
+                return true;
+            }
+        }
+
+        function clearValidation(inputElement, errorMessageElement) {
+            inputElement.classList.remove('is-invalid');
+            inputElement.closest('.input-group').classList.remove('has-error');
+            errorMessageElement.textContent = '';
+        }
 
         // --- Operadores Aritméticos ---
         function calcularAritmeticos() {
-            const num1 = parseFloat(document.getElementById('num1Arit').value);
-            const num2 = parseFloat(document.getElementById('num2Arit').value);
+            const num1Input = document.getElementById('num1Arit');
+            const num2Input = document.getElementById('num2Arit');
             const operador = document.getElementById('operadorArit').value;
-            let resultado;
             const resultadoAritSpan = document.getElementById('resultadoArit');
             const resultadoAritP = resultadoAritSpan.closest('p.resultado');
 
-            if (isNaN(num1) || isNaN(num2)) {
-                resultado = "Erro: Por favor, insira números válidos.";
+            // Clear previous error state
+            resultadoAritP.classList.remove('error-message');
+            resultadoAritSpan.textContent = '';
+
+            const isValidNum1 = validateInput(num1Input, document.getElementById('errorNum1Arit'), value => !isNaN(parseFloat(value)) && value.trim() !== '');
+            const isValidNum2 = validateInput(num2Input, document.getElementById('errorNum2Arit'), value => !isNaN(parseFloat(value)) && value.trim() !== '');
+
+            if (!isValidNum1 || !isValidNum2) {
                 resultadoAritP.classList.add('error-message');
-            } else {
-                switch (operador) {
-                    case '+':
-                        resultado = num1 + num2;
-                        break;
-                    case '-':
-                        resultado = num1 - num2;
-                        break;
-                    case '*':
-                        resultado = num1 * num2;
-                        break;
-                    case '/':
-                        if (num2 === 0) {
-                            resultado = "Erro: Divisão por zero não é permitida!";
-                            resultadoAritP.classList.add('error-message');
-                        } else {
-                            resultado = num1 / num2;
-                        }
-                        break;
-                    default:
-                        resultado = "Erro: Operador inválido.";
-                        resultadoAritP.classList.add('error-message');
-                }
-                if (typeof resultado === 'number') {
-                    resultadoAritP.classList.remove('error-message');
-                }
+                resultadoAritSpan.textContent = "Erro: Por favor, preencha todos os campos corretamente.";
+                return;
             }
-            resultadoAritSpan.textContent = typeof resultado === 'number' ? resultado.toFixed(2).replace('.', ',') : resultado;
+
+            const num1 = parseFloat(num1Input.value);
+            const num2 = parseFloat(num2Input.value);
+            let resultado;
+
+            switch (operador) {
+                case '+':
+                    resultado = num1 + num2;
+                    break;
+                case '-':
+                    resultado = num1 - num2;
+                    break;
+                case '*':
+                    resultado = num1 * num2;
+                    break;
+                case '/':
+                    if (num2 === 0) {
+                        resultado = "Erro: Divisão por zero não é permitida!";
+                        resultadoAritP.classList.add('error-message');
+                        resultadoAritSpan.textContent = resultado;
+                        return;
+                    } else {
+                        resultado = num1 / num2;
+                    }
+                    break;
+                default:
+                    resultado = "Erro: Operador inválido.";
+                    resultadoAritP.classList.add('error-message');
+                    resultadoAritSpan.textContent = resultado;
+                    return;
+            }
+            resultadoAritSpan.textContent = resultado.toFixed(2).replace('.', ',');
         }
 
         function limparAritmeticos() {
@@ -661,27 +935,34 @@
             document.getElementById('operadorArit').value = '+';
             document.getElementById('resultadoArit').textContent = '';
             document.getElementById('resultadoArit').closest('p.resultado').classList.remove('error-message');
+            clearValidation(document.getElementById('num1Arit'), document.getElementById('errorNum1Arit'));
+            clearValidation(document.getElementById('num2Arit'), document.getElementById('errorNum2Arit'));
         }
 
         // --- Porcentagem ---
         function calcularPorcentagem() {
-            const valorTotal = parseFloat(document.getElementById('valorPorcentagem').value);
-            const percentual = parseFloat(document.getElementById('percentual').value);
+            const valorPorcentagemInput = document.getElementById('valorPorcentagem');
+            const percentualInput = document.getElementById('percentual');
             const resultadoPorcentagemSpan = document.getElementById('resultadoPorcentagem');
             const resultadoPorcentagemP = resultadoPorcentagemSpan.closest('p.resultado');
-            let resultado;
 
-            if (isNaN(valorTotal) || isNaN(percentual)) {
-                resultado = "Erro: Por favor, insira números válidos.";
+            resultadoPorcentagemP.classList.remove('error-message');
+            resultadoPorcentagemSpan.textContent = '';
+
+            const isValidValor = validateInput(valorPorcentagemInput, document.getElementById('errorValorPorcentagem'), value => !isNaN(parseFloat(value)) && parseFloat(value) >= 0);
+            const isValidPercentual = validateInput(percentualInput, document.getElementById('errorPercentual'), value => !isNaN(parseFloat(value)) && parseFloat(value) >= 0 && parseFloat(value) <= 100);
+
+            if (!isValidValor || !isValidPercentual) {
                 resultadoPorcentagemP.classList.add('error-message');
-            } else if (percentual < 0 || percentual > 100) {
-                resultado = "Erro: Percentual deve estar entre 0 e 100.";
-                resultadoPorcentagemP.classList.add('error-message');
-            } else {
-                resultado = (valorTotal * percentual) / 100;
-                resultadoPorcentagemP.classList.remove('error-message');
+                resultadoPorcentagemSpan.textContent = "Erro: Insira valores válidos e positivos para Valor Total e Percentual (0-100).";
+                return;
             }
-            resultadoPorcentagemSpan.textContent = typeof resultado === 'number' ? resultado.toFixed(2).replace('.', ',') : resultado;
+
+            const valorTotal = parseFloat(valorPorcentagemInput.value);
+            const percentual = parseFloat(percentualInput.value);
+
+            const resultado = (valorTotal * percentual) / 100;
+            resultadoPorcentagemSpan.textContent = resultado.toFixed(2).replace('.', ',');
         }
 
         function limparPorcentagem() {
@@ -689,34 +970,48 @@
             document.getElementById('percentual').value = '';
             document.getElementById('resultadoPorcentagem').textContent = '';
             document.getElementById('resultadoPorcentagem').closest('p.resultado').classList.remove('error-message');
+            clearValidation(document.getElementById('valorPorcentagem'), document.getElementById('errorValorPorcentagem'));
+            clearValidation(document.getElementById('percentual'), document.getElementById('errorPercentual'));
         }
 
         // --- Juros Simples ---
         function calcularJurosSimples() {
-            const capital = parseFloat(document.getElementById('capital').value);
-            const taxaJuros = parseFloat(document.getElementById('taxaJuros').value) / 100; // Converter % para decimal
-            const tempo = parseFloat(document.getElementById('tempo').value);
+            const capitalInput = document.getElementById('capital');
+            const taxaJurosInput = document.getElementById('taxaJuros');
+            const tempoInput = document.getElementById('tempo');
 
             const jurosResultadoSpan = document.getElementById('jurosResultado');
             const montanteResultadoSpan = document.getElementById('montanteResultado');
             const jurosResultadoP = jurosResultadoSpan.closest('p.resultado');
             const montanteResultadoP = montanteResultadoSpan.closest('p.resultado');
 
-            if (isNaN(capital) || isNaN(taxaJuros) || isNaN(tempo) || capital < 0 || taxaJuros < 0 || tempo < 0) {
-                jurosResultadoSpan.textContent = "Erro: Insira valores positivos e válidos.";
+            jurosResultadoP.classList.remove('error-message');
+            montanteResultadoP.classList.remove('error-message');
+            jurosResultadoSpan.textContent = '';
+            montanteResultadoSpan.textContent = '';
+
+            const isValidCapital = validateInput(capitalInput, document.getElementById('errorCapital'), value => !isNaN(parseFloat(value)) && parseFloat(value) >= 0);
+            const isValidTaxa = validateInput(taxaJurosInput, document.getElementById('errorTaxaJuros'), value => !isNaN(parseFloat(value)) && parseFloat(value) >= 0);
+            const isValidTempo = validateInput(tempoInput, document.getElementById('errorTempo'), value => !isNaN(parseFloat(value)) && parseFloat(value) >= 0);
+
+            if (!isValidCapital || !isValidTaxa || !isValidTempo) {
                 jurosResultadoP.classList.add('error-message');
+                jurosResultadoSpan.textContent = "Erro: Insira valores numéricos positivos para Capital, Taxa e Tempo.";
                 montanteResultadoSpan.textContent = "";
-                montanteResultadoP.classList.remove('error-message'); // Clear any previous error on montante
                 return;
             }
 
-            const juros = capital * taxaJuros * tempo;
+            const capital = parseFloat(capitalInput.value);
+            const taxaJuros = parseFloat(taxaJurosInput.value);
+            const tempo = parseFloat(tempoInput.value);
+
+            const taxaJurosDecimal = taxaJuros / 100;
+
+            const juros = capital * taxaJurosDecimal * tempo;
             const montante = capital + juros;
 
             jurosResultadoSpan.textContent = `R$ ${juros.toFixed(2).replace('.', ',')}`;
             montanteResultadoSpan.textContent = `R$ ${montante.toFixed(2).replace('.', ',')}`;
-            jurosResultadoP.classList.remove('error-message');
-            montanteResultadoP.classList.remove('error-message');
         }
 
         function limparJurosSimples() {
@@ -727,11 +1022,26 @@
             document.getElementById('montanteResultado').textContent = '';
             document.getElementById('jurosResultado').closest('p.resultado').classList.remove('error-message');
             document.getElementById('montanteResultado').closest('p.resultado').classList.remove('error-message');
+            clearValidation(document.getElementById('capital'), document.getElementById('errorCapital'));
+            clearValidation(document.getElementById('taxaJuros'), document.getElementById('errorTaxaJuros'));
+            clearValidation(document.getElementById('tempo'), document.getElementById('errorTempo'));
         }
 
         // --- Fluxo de Caixa ---
         let transacoes = [];
         let saldoAtual = 0;
+        const LOCAL_STORAGE_KEY = 'cashFlowTransactions';
+
+        function saveTransactionsToLocalStorage() {
+            localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(transacoes));
+        }
+
+        function loadTransactionsFromLocalStorage() {
+            const storedTransactions = localStorage.getItem(LOCAL_STORAGE_KEY);
+            if (storedTransactions) {
+                transacoes = JSON.parse(storedTransactions);
+            }
+        }
 
         function adicionarTransacaoFluxo() {
             const descricaoInput = document.getElementById('descricaoFluxo');
@@ -741,61 +1051,77 @@
             const descricao = descricaoInput.value.trim();
             const valor = parseFloat(valorInput.value);
 
-            if (descricao === "" || isNaN(valor) || valor <= 0) {
-                alert("Por favor, insira uma descrição e um valor numérico positivo para a transação.");
-                return;
+            const isValidDescricao = validateInput(descricaoInput, document.getElementById('errorDescricaoFluxo'), value => value.trim() !== '');
+            const isValidValor = validateInput(valorInput, document.getElementById('errorValorFluxo'), value => !isNaN(parseFloat(value)) && parseFloat(value) > 0);
+
+            if (!isValidDescricao || !isValidValor) {
+                return; // Stop if validation fails
             }
 
             const transacao = {
+                id: Date.now(), // Unique ID for each transaction
                 descricao: descricao,
                 valor: valor,
                 tipo: tipo
             };
 
             transacoes.push(transacao);
+            saveTransactionsToLocalStorage(); // Save to local storage
             atualizarFluxoDeCaixa();
 
-            // Limpar campos após adicionar
+            // Clear fields after adding
             descricaoInput.value = '';
             valorInput.value = '';
-            descricaoInput.focus(); // Keep focus for quick entry
+            descricaoInput.focus();
         }
 
         function atualizarFluxoDeCaixa() {
             const listaTransacoes = document.getElementById('listaTransacoes');
-            listaTransacoes.innerHTML = ''; // Limpa a lista para reconstruir
+            listaTransacoes.innerHTML = ''; // Clear existing list
             saldoAtual = 0;
 
-            transacoes.forEach((transacao, index) => {
-                const li = document.createElement('li');
-                li.classList.add(transacao.tipo);
+            if (transacoes.length === 0) {
+                const emptyMessage = document.createElement('li');
+                emptyMessage.textContent = 'Nenhuma transação adicionada ainda.';
+                emptyMessage.style.textAlign = 'center';
+                emptyMessage.style.fontStyle = 'italic';
+                emptyMessage.style.color = 'var(--info-text-color)';
+                emptyMessage.style.padding = '20px';
+                emptyMessage.style.backgroundColor = 'var(--background-color)';
+                emptyMessage.style.borderRadius = '8px';
+                listaTransacoes.appendChild(emptyMessage);
+            } else {
+                transacoes.forEach((transacao) => { // Removed index, as ID is used for removal
+                    const li = document.createElement('li');
+                    li.classList.add(transacao.tipo);
 
-                const descriptionSpan = document.createElement('span');
-                descriptionSpan.textContent = transacao.descricao;
-                li.appendChild(descriptionSpan);
+                    const descriptionSpan = document.createElement('span');
+                    descriptionSpan.textContent = transacao.descricao;
+                    li.appendChild(descriptionSpan);
 
-                const valueSpan = document.createElement('span');
-                valueSpan.classList.add('valor');
-                valueSpan.textContent = `R$ ${transacao.valor.toFixed(2).replace('.', ',')}`;
-                li.appendChild(valueSpan);
+                    const valueSpan = document.createElement('span');
+                    valueSpan.classList.add('valor');
+                    valueSpan.textContent = `R$ ${transacao.valor.toFixed(2).replace('.', ',')}`;
+                    li.appendChild(valueSpan);
 
-                const removeBtn = document.createElement('button');
-                removeBtn.textContent = 'x';
-                removeBtn.title = 'Remover transação';
-                removeBtn.onclick = () => removerTransacao(index);
-                li.appendChild(removeBtn);
+                    const removeBtn = document.createElement('button');
+                    removeBtn.innerHTML = '<i class="fas fa-trash-alt"></i>'; // Icon for delete button
+                    removeBtn.title = 'Remover transação';
+                    removeBtn.onclick = () => removerTransacao(transacao.id); // Use ID for removal
+                    li.appendChild(removeBtn);
 
-                listaTransacoes.appendChild(li);
+                    listaTransacoes.appendChild(li);
 
-                if (transacao.tipo === 'receita') {
-                    saldoAtual += transacao.valor;
-                } else {
-                    saldoAtual -= transacao.valor;
-                }
-            });
+                    if (transacao.tipo === 'receita') {
+                        saldoAtual += transacao.valor;
+                    } else {
+                        saldoAtual -= transacao.valor;
+                    }
+                });
+            }
 
             const saldoFluxoSpan = document.getElementById('saldoFluxo');
-            saldoFluxoSpan.textContent = saldoAtual.toFixed(2).replace('.', ','); // Format to Brazilian currency decimal separator
+            saldoFluxoSpan.textContent = saldoAtual.toFixed(2).replace('.', ',');
             saldoFluxoSpan.classList.remove('positive', 'negative');
             if (saldoAtual >= 0) {
                 saldoFluxoSpan.classList.add('positive');
@@ -804,22 +1130,23 @@
             }
         }
 
-        function removerTransacao(index) {
-            transacoes.splice(index, 1);
+        function removerTransacao(idToRemove) {
+            transacoes = transacoes.filter(transacao => transacao.id !== idToRemove);
+            saveTransactionsToLocalStorage(); // Save to local storage after removal
             atualizarFluxoDeCaixa();
         }
 
         function limparFluxoDeCaixa() {
-            if (confirm("Tem certeza que deseja limpar todas as transações do fluxo de caixa?")) {
+            if (confirm("Tem certeza que deseja limpar todas as transações do fluxo de caixa? Esta ação não pode ser desfeita.")) {
                 transacoes = [];
+                saveTransactionsToLocalStorage(); // Clear local storage
                 atualizarFluxoDeCaixa();
                 document.getElementById('descricaoFluxo').value = '';
                 document.getElementById('valorFluxo').value = '';
+                clearValidation(document.getElementById('descricaoFluxo'), document.getElementById('errorDescricaoFluxo'));
+                clearValidation(document.getElementById('valorFluxo'), document.getElementById('errorValorFluxo'));
             }
         }
-
-        // Initial update for Fluxo de Caixa on load
-        document.addEventListener('DOMContentLoaded', atualizarFluxoDeCaixa);
     </script>
 </body>
 </html>
